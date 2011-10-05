@@ -2,7 +2,7 @@
 
    class Module_imagepicker extends Module {
 
-	public $version  = '1.0';
+	public $version  = '0.1';
 
 	public function info()
 	{
