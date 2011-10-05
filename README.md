@@ -22,39 +22,45 @@ Usage
 So how do you use this marvelous piece of technology? Simple! Just follow
 the following steps:
 
-1. download and install the module
-2. append some JavaScript and CSS files to your template in your 
-   contoller:
+* download and install the module
+* append some JavaScript and CSS files to your template in your 
+  contoller:
 
-	$this->template
-		// This one is very important.
-		->append_metadata(js('imagepicker.js', 'imagepicker'))
-		// To make it look good...
-		->append_metadata(css('admin.css', 'imagepicker'))
-		// You probably already use the following two, no need to include them twice...
-		->append_metadata(js('jquery/jquery-ui.min.js'))
-		->append_metadata(css('jquery/ui-lightness/jquery-ui.css'));
-3. In your view somewhere near the (hidden) input field that holds the
-   primary key of the image make a button or a link that fires a piece
-   JavaScript when clicked:
+```PHP
+$this->template
+	// This one is very important.
+	->append_metadata(js('imagepicker.js', 'imagepicker'))
+	// To make it look good...
+	->append_metadata(css('admin.css', 'imagepicker'))
+	// You probably already use the following two, no need to include them twice...
+	->append_metadata(js('jquery/jquery-ui.min.js'))
+	->append_metadata(css('jquery/ui-lightness/jquery-ui.css'));
+```
+* In your view somewhere near the (hidden) input field that holds the
+  primary key of the image make a button or a link that fires a piece
+  of JavaScript when clicked:
 
-	<script type="text/javascript">
-		(function($) {  
-			$('#pickanimage').livequery('click', function(){
-				ImagePicker.open({
-					showSizeSlider      : false, //true,
-					showAlignButtons    : false, //true,
-					onPickCallback      : function(imageId, size, alignment) {
-						alert("you chose image: " + imageId + ", with width: " + size + " and alignment: " + alignment);
-					}
-				});
-				return false;
+```javascipt
+<script type="text/javascript">
+	(function($) {  
+		$('#pickanimage').livequery('click', function(){
+			ImagePicker.open({
+				showSizeSlider      : false, //true,
+				showAlignButtons    : false, //true,
+				onPickCallback      : function(imageId, size, alignment) {
+					alert("you chose image: " + imageId + ", with width: " + size + " and alignment: " + alignment);
+				}
 			});
-		})(jQuery);
-	</script>
+			return false;
+		});
+	})(jQuery);
+</script>
+```
 
 That's it...
+
 The function **ImagePicker.open** takes 3 arguments:
+
 * **showSizeSlider** when true the slider to chose the size is shown. 
   (default true)
 * **showAlignButtons** when true the buttons to chose the alignment 
